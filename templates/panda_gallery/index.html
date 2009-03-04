@@ -1,0 +1,61 @@
+<html>
+{% load gallery_tags %}
+<head>
+  <title>panda gallery</title>
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 125%;
+    margin: 1em 3em;
+}
+
+a:link, a:visited, a:active { color: white; text-decoration:none;  }
+a:hover { color: white; text-decoration:none; font-weight: bolder; }
+
+#names {
+    margin: 1em 0;
+    text-transform: uppercase;
+}
+
+#container {
+    margin: 0 auto;
+}
+
+div.panda {
+    float: left;
+}
+  </style>
+</head>
+<body>
+
+<div id="names">
+{% for name in available_pandas %}
+  {% ifequal name selected_panda %}
+    <b><a href="?panda={{ name }}" >{{ name }}</a></b>
+  {% else %}
+    <a href="?panda={{ name }}">{{ name }}</a>
+  {% endifequal %}
+
+  {% if not forloop.last %}
+  /
+  {% endif %}
+{% endfor %}
+</div>
+
+<div id="container">
+{% for photo in panda_photos %}
+  <div class="panda">
+    <img src="{{ photo|as_flickr_link }}" height="75" width="75">
+  </div>
+{% endfor %}
+</div>
+
+</body>
+</html>
