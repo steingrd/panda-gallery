@@ -12,8 +12,7 @@ body {
     background-color: black;
     color: white;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 125%;
-    margin: 1em 3em;
+    margin: 3em;
 }
 
 a:link, a:visited, a:active { color: white; text-decoration:none;  }
@@ -24,13 +23,9 @@ a:hover { color: white; text-decoration:none; font-weight: bolder; }
     text-transform: uppercase;
 }
 
-#container {
-    margin: 0 auto;
-}
-
-div.panda {
-    float: left;
-}
+#container { margin: 0 auto; }
+div.panda { float: left; }
+img { border: 0 none; }
   </style>
 </head>
 <body>
@@ -52,7 +47,7 @@ div.panda {
 <div id="container">
 {% for photo in panda_photos %}
   <div class="panda">
-    <img src="{{ photo|as_flickr_link }}" height="75" width="75">
+    <a href="{{ photo|as_flickr_user_link }}"><img src="{{ photo|as_flickr_link }}" height="75" width="75" title="{{ photo|as_title }}"></a>
   </div>
 {% endfor %}
 </div>
