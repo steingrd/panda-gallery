@@ -18,7 +18,7 @@ def get_panda_names():
 
 
 def get_panda_photos(panda_name):
-    in_cache = cache.get('panda_photos')
+    in_cache = cache.get(panda_name)
     if in_cache:
         print 'DEBUG cache hit'
         return _get_panda_photos_from_xml(in_cache)
@@ -29,7 +29,7 @@ def get_panda_photos(panda_name):
     photos = result.find('photos')
 
     timeout = int(photos.attrib['interval']) / 1000
-    cache.set('panda_photos', photos, timeout)
+    cache.set(panda_name, photos, timeout)
 
     return _get_panda_photos_from_xml(photos)
 
