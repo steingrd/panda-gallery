@@ -20,10 +20,8 @@ def get_panda_names():
 def get_panda_photos(panda_name):
     in_cache = cache.get(panda_name)
     if in_cache:
-        print 'DEBUG cache hit'
         return _get_panda_photos_from_xml(in_cache)
 
-    print 'DEBUG cache miss'
     flickr = flickrapi.FlickrAPI(settings.FLICKR_API_KEY)
     result = flickr.panda_getPhotos(panda_name=panda_name)
     photos = result.find('photos')
