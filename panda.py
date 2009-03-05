@@ -33,6 +33,5 @@ def get_panda_photos(panda_name):
 
 
 def _get_panda_photos_from_xml(photos):
-    photo_list = photos.findall('photo')[::]
-    random.shuffle(photo_list)
+    photo_list = photos.findall('photo')
     return photo_list[:settings.FLICKR_PANDA_PAGE]
